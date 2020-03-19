@@ -1,0 +1,10 @@
+par(mfrow = c(2, 2))
+plot(df$fulldate, df$Global_active_power, xlab = "", ylab = "Global Active Power", type = 'l')
+plot(df$fulldate, df$Voltage, xlab = "Data Time", ylab = "Voltage", type = 'l')
+plot(df$fulldate, df$Sub_metering_1, xlab = "", ylab = "Sub_metering_1", type = 'l', col = "black")
+lines(df$fulldate, df$Sub_metering_2, col = "red")
+lines(df$fulldate, df$Sub_metering_3, col = "blue")
+legend("topright", c("Sub metering 1", "Sub metering 2", "Sub metering 3"), col = c("black", "red", "blue"), lty = 1, lwd = 2.5)
+plot(df$fulldate, df$Global_reactive_power, xlab = "datatime", ylab = "Global_Reactive_Power", type = "l", cex = 0.2)
+dev.copy(png, "plot4.png")
+dev.off

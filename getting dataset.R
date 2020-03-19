@@ -1,0 +1,11 @@
+library(readr)
+library(dplyr)
+library(data.table)
+source <- read.csv("~/R/household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors = FALSE, na = c("?","NA"))
+source <- as.data.table(source)
+source$Date <- as.Date(source$Date, "%d / %m / %Y")
+timestamp1 <- as.Date('2007-02-01')
+timestampe2 <- as.Date('2007-02-02')
+df <- source[between(Date, timestamp1, timestampe2)] #Subsetting the dataset
+df$fulldate <- paste(df$Date, df$Time)
+df$fulldate <- as.POSIXct(df$fulldate, format = '%Y-%m-%d %H:%M:%S')
